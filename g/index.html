@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Jess Simon-Parker — GTM Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #131313;
+    --surface-2: #1a1a1a;
+    --border: #262626;
+    --text: #f5f5f5;
+    --text-dim: #888;
+    --text-dim-2: #555;
+    --accent: #5ee7c4;
+    --accent-dim: #5ee7c422;
+    --warn: #ffb84d;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  code, .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; }
+
+  /* Sticky top nav */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+  }
+  nav .brand { font-weight: 600; letter-spacing: -0.01em; }
+  nav .brand .accent { color: var(--accent); }
+  nav ul { list-style: none; display: flex; gap: 32px; }
+  nav a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+  nav a:hover { color: var(--text); }
+
+  /* Layout */
+  section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 48px;
+  }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-size: 64px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  h2 {
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  h3 {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+  .lede {
+    font-size: 20px;
+    color: var(--text-dim);
+    max-width: 700px;
+    line-height: 1.5;
+  }
+  p { color: var(--text-dim); margin-bottom: 16px; }
+  p strong { color: var(--text); font-weight: 500; }
+
+  /* Hero */
+  .hero {
+    min-height: 80vh;
+    padding-top: 120px;
+    padding-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text-dim-2);
+    margin-bottom: 32px;
+  }
+  .hero .meta .dot { color: var(--accent); margin: 0 10px; }
+  .hero h1 .accent { color: var(--accent); }
+  .hero .thesis {
+    margin-top: 48px;
+    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    max-width: 720px;
+  }
+  .hero .thesis .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 8px;
+  }
+  .hero .thesis .text {
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  /* Project cards in hero */
+  .project-overview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 64px;
+  }
+  .project-card {
+    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: border 0.2s;
+  }
+  .project-card:hover { border-color: var(--accent); }
+  .project-card .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .project-card h3 { font-size: 24px; }
+  .project-card p { margin-bottom: 0; font-size: 15px; }
+  .project-card .stack {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .stack-chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    border-radius: 4px;
+  }
+
+  /* Project sections */
+  .project-section { border-top: 1px solid var(--border); }
+  .project-header {
+    margin-bottom: 64px;
+  }
+  .project-header .num-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    padding: 6px 12px;
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+
+  /* Stage blocks */
+  .stage {
+    margin-bottom: 56px;
+    padding-left: 32px;
+    border-left: 1px solid var(--border);
+    position: relative;
+  }
+  .stage::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 8px;
+    width: 9px;
+    height: 9px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px var(--bg);
+  }
+  .stage-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+  }
+  .stage h3 { margin-bottom: 16px; font-size: 26px; }
+
+  /* Quote / callout */
+  .callout {
+    padding: 20px 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    margin: 24px 0;
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  .callout.placeholder {
+    border-left-color: var(--warn);
+    color: var(--warn);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+  }
+
+  /* Build vs buy table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+  th, td {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+  }
+  td { color: var(--text-dim); }
+  td.win { color: var(--accent); }
+  td strong { color: var(--text); font-weight: 500; }
+
+  /* Architecture diagram */
+  .arch {
+    margin: 32px 0;
+    padding: 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+  .arch-flow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+  .arch-node {
+    padding: 10px 16px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .arch-node.input { border-color: var(--text-dim-2); }
+  .arch-node.ai { border-color: var(--accent); color: var(--accent); }
+  .arch-node.output { border-color: var(--accent); background: var(--accent-dim); }
+  .arch-arrow { color: var(--accent); font-size: 18px; }
+
+  /* Iteration arc */
+  .iterations {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .iter {
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    position: relative;
+  }
+  .iter .version {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .iter h4 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+  .iter p { font-size: 13px; margin-bottom: 8px; }
+  .iter .status {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-top: 8px;
+  }
+  .status.shipped { background: var(--accent-dim); color: var(--accent); }
+  .status.wip { background: rgba(255,184,77,0.15); color: var(--warn); }
+
+  /* Code block */
+  pre {
+    margin: 24px 0;
+    padding: 20px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-dim);
+  }
+  pre .kw { color: #c792ea; }
+  pre .str { color: #a5e075; }
+  pre .fn { color: var(--accent); }
+  pre .com { color: var(--text-dim-2); font-style: italic; }
+
+  /* Metrics row */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .metric {
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .metric .num {
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--accent);
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .metric .label {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Closing thesis */
+  .closing {
+    text-align: center;
+    padding: 120px 48px;
+    border-top: 1px solid var(--border);
+  }
+  .closing h2 {
+    font-size: 48px;
+    margin-bottom: 24px;
+  }
+  .closing h2 .accent { color: var(--accent); }
+  .closing .links {
+    margin-top: 48px;
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    font-size: 14px;
+  }
+  .closing .links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .closing .links a:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* Footer */
+  footer {
+    padding: 32px 48px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--text-dim-2);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+  }
+
+  /* Hero subtitle */
+  .hero-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+  .hero-subtitle::before {
+    content: '> ';
+    color: var(--accent);
+  }
+
+  /* Sub-label headers inside stages */
+  .sub-label {
+    margin-top: 32px;
+    margin-bottom: 16px;
+    font-size: 12px;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+  }
+
+  /* Signal taxonomy grid */
+  .signal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .signal-block {
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .signal-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .signal-list {
+    list-style: none;
+    padding: 0;
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.9;
+  }
+  .signal-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed var(--border);
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+  }
+  .signal-list li:last-child { border-bottom: none; }
+  .dim { color: var(--text-dim-2); }
+
+  /* Band colors */
+  .band-hot { color: #ff6b6b !important; }
+  .band-warm { color: var(--warn) !important; }
+  .band-cold { color: var(--text-dim) !important; }
+
+  /* Inline code */
+  .inline-code {
+    background: var(--surface-2);
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9em;
+    border: 1px solid var(--border);
+  }
+
+  /* Flowchart visual */
+  .flowchart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 32px 0;
+    padding: 32px 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    gap: 10px;
+  }
+  .flow-node {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 22px;
+    min-width: 260px;
+    max-width: 480px;
+    text-align: center;
+    transition: all 0.2s ease;
+    cursor: default;
+  }
+  .flow-node:hover {
+    border-color: var(--accent);
+    background: var(--bg);
+    transform: translateY(-1px);
+  }
+  .flow-node.source {
+    background: var(--bg);
+    border-color: var(--text-dim);
+  }
+  .flow-node.accent {
+    border-color: var(--accent);
+    background: linear-gradient(180deg, var(--surface-2), var(--accent-dim));
+  }
+  .flow-node.output {
+    border-color: var(--accent);
+    background: var(--accent-dim);
+  }
+  .flow-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 6px;
+  }
+  .flow-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .flow-detail {
+    font-size: 11px;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1.5;
+  }
+  .flow-formula {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    margin-top: 6px;
+  }
+  .flow-arrow {
+    color: var(--accent);
+    font-size: 22px;
+    line-height: 1;
+    margin: 2px 0;
+  }
+  .flow-arrow-h {
+    color: var(--accent);
+    font-size: 16px;
+  }
+  .flow-branch {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  .flow-bands { gap: 12px; }
+  .flow-bands .flow-node {
+    min-width: 130px;
+    padding: 14px;
+  }
+  .band-hot { border-color: #ff6b6b; }
+  .band-warm { border-color: var(--warn); }
+  .band-cold { border-color: var(--text-dim); }
+  .flow-band {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .band-hot .flow-band { color: #ff6b6b; }
+  .band-warm .flow-band { color: var(--warn); }
+  .band-cold .flow-band { color: var(--text-dim); }
+  .flow-range {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .flow-observability {
+    margin: 24px 0 8px;
+    padding: 18px 22px;
+    background: var(--bg);
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .flow-side-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+    flex-wrap: wrap;
+  }
+  .flow-node.side {
+    background: var(--surface);
+    border-color: var(--border);
+    padding: 8px 14px;
+    min-width: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    nav { padding: 12px 24px; }
+    nav ul { gap: 16px; font-size: 13px; }
+    section { padding: 64px 24px; }
+    h1 { font-size: 40px; }
+    h2 { font-size: 28px; }
+    .project-overview { grid-template-columns: 1fr; }
+    .iterations { grid-template-columns: 1fr; }
+    .signal-grid { grid-template-columns: 1fr; }
+    .flow-branch { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">jess<span class="accent">.</span>simon-parker</div>
+  <ul>
+    <li><a href="#project-1">Territory Model</a></li>
+    <li><a href="#project-2">Intent Surfacing Layer</a></li>
+    <li><a href="#close">Thesis</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="meta">
+    GTM Engineer interview <span class="dot">●</span> 06.02.2026
+  </div>
+  <h1>Two systems<br>I built<span class="accent">.</span></h1>
+  <div class="hero-subtitle">Project walkthrough</div>
+
+  <div class="project-overview">
+    <a href="#project-1" class="project-card" style="text-decoration:none;color:inherit;">
+      <div class="num">PROJECT_01</div>
+      <h3>Dynamic Territory Model</h3>
+      <p>Adopted by RevOps. Now core to Squint's outbound sales motion.</p>
+      <div class="stack">
+        <span class="stack-chip">Clay</span>
+        <span class="stack-chip">AI agents</span>
+        <span class="stack-chip">SFDC</span>
+      </div>
+    </a>
+    <a href="#project-2" class="project-card" style="text-decoration:none;color:inherit;">
+      <div class="num">PROJECT_02</div>
+      <h3>Intent Signal Surfacing Layer</h3>
+      <p>Three modular signal sources — company followers, competitor engagement, CEO post engagement.</p>
+      <div class="stack">
+        <span class="stack-chip">Python</span>
+        <span class="stack-chip">BrightData</span>
+        <span class="stack-chip">PhantomBuster</span>
+        <span class="stack-chip">Flask</span>
+        <span class="stack-chip">Supabase</span>
+        <span class="stack-chip">Railway</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="thesis">
+    <div class="label">THESIS</div>
+    <div class="text">Dynamic Territory Model = <em>which</em> accounts to chase. Intent Surfacing Layer = <em>when</em> they're leaning in. Together = a complete outbound priority system.</div>
+  </div>
+</section>
+
+<!-- PROJECT 1 -->
+<section id="project-1" class="project-section">
+  <div class="project-header">
+    <div class="num-tag">PROJECT_01</div>
+    <h2>Dynamic Territory Model</h2>
+    <p class="lede">Automated firmographic + intent scoring engine, used by RevOps, that replaced manual account prioritization across the AE team.</p>
+  </div>
+
+  <!-- Stage 1 -->
+  <div class="stage">
+    <div class="stage-num">STAGE_01 / IDENTIFYING THE PROBLEM</div>
+    <h3>Account selection wasn't backed by data.</h3>
+    <p>Doing SDR work in <strong>November 2025</strong>, I was deep-diving accounts manually — pulling 10-Ks, investor reports, LinkedIn activity, competitor usage, often paired with ChatGPT and Claude research.</p>
+
+    <p>Across the team, AEs and SDRs were spending <strong>~2 hours per account</strong> on this research. It didn't scale. Worse, accounts would get worked for weeks before discovering they were clearly not a fit — wasted investment that could have been avoided with the right information up front.</p>
+
+    <p>The structural problem: <strong>account selection wasn't backed by data.</strong> SDRs picked randomly. AEs had hundreds of accounts assigned and weren't actively working most. <strong>A gap RevOps had flagged too.</strong></p>
+
+    <div class="callout">
+      We'd work an account for a month, then learn they'd built an in-house solution. Auto-parts hit by tariffs. Accounts in M&amp;A. The traits that <strong>halted</strong> deals kept repeating — but nothing caught them upstream.
+    </div>
+
+    <p>Built the system over Thanksgiving + Christmas to scale what I was doing manually — designed to evolve as the market and ICP change.</p>
+  </div>
+
+  <!-- Stage 2 -->
+  <div class="stage">
+    <div class="stage-num">STAGE_02 / EXPLORING SOLUTIONS</div>
+    <h3>Pitched RevOps before building.</h3>
+    <p>Wanted org-wide adoption from day one. Designed the system end-to-end, wrote the scoring math, pitched a proposal deck to Head of RevOps mapping sources, data flow, and outcome goals.</p>
+
+    <div class="callout">
+      <strong>The core thesis:</strong> separate <strong>fit</strong> from <strong>timing</strong>. Market signals score whether an account <em>should ever</em> buy. Intent signals score whether it <em>should buy now</em>.
+    </div>
+
+    <p>The signal taxonomy wasn't from my head — validated it with AEs (what changes signal real timing) and the broader sales org (highest-intent signals that closed deals). Demoed real Claygent outputs in the pitch so RevOps could see exactly what the system would do.</p>
+
+    <h4 class="sub-label">Considerations</h4>
+    <p><strong>Buy vs. build:</strong> 6sense and Bombora considered as data import sources, not replacements. Their topics are generic; Squint needed manufacturing-specific signals (plant expansion, ops excellence, frontline hiring). Our ICP was still evolving — pre-built models couldn't iterate fast enough.</p>
+
+    <p><strong>Why Clay:</strong> Claygents beat raw web scraping on messy signals. Clay supports embedded Python via webhooks (didn't have to give it up). And the visual table lets RevOps tune logic without me. <strong>Build for the operator.</strong></p>
+  </div>
+
+  <!-- Stage 3 -->
+  <div class="stage">
+    <div class="stage-num">STAGE_03 / IMPLEMENTATION</div>
+    <h3>Four tables. Two scoring layers. One ranked account list.</h3>
+
+    <p>Designed and built solo over Thanksgiving and Christmas — a Clay-based engine that imports SFDC accounts, runs three Claygents I wrote to score market signals, layers in first-party engagement, and outputs a stack-ranked list with a "why now" explanation per account.</p>
+
+    <h4 class="sub-label">The architecture, end-to-end</h4>
+
+    <div class="flowchart">
+      <div class="flow-node source">
+        <div class="flow-label">SOURCE</div>
+        <div class="flow-title">SFDC Accounts</div>
+      </div>
+      <div class="flow-arrow">↓</div>
+
+      <div class="flow-node">
+        <div class="flow-label">TABLE 1</div>
+        <div class="flow-title">Accounts (Live)</div>
+        <div class="flow-detail">One row per account · current state from SFDC</div>
+      </div>
+      <div class="flow-arrow">↓</div>
+
+      <div class="flow-branch">
+        <div class="flow-node">
+          <div class="flow-label">TABLE 2A · CLAYGENT</div>
+          <div class="flow-title">Market Signals — FIT</div>
+          <div class="flow-detail">AI/Digital · Ops Excellence · Plant Expansion · M&amp;A</div>
+        </div>
+        <div class="flow-node">
+          <div class="flow-label">TABLE 2B · CLAYGENT</div>
+          <div class="flow-title">Intent Signals — TIMING</div>
+          <div class="flow-detail">Inbound · Content · Opp history · Events · Leader hire · Hiring spike</div>
+        </div>
+      </div>
+      <div class="flow-arrow">↓</div>
+
+      <div class="flow-node accent">
+        <div class="flow-label">SCORING</div>
+        <div class="flow-title">Composite Score</div>
+        <div class="flow-formula">0.10·Firm + 0.40·Market + 0.50·Intent → 0–100</div>
+      </div>
+      <div class="flow-arrow">↓</div>
+
+      <div class="flow-branch flow-bands">
+        <div class="flow-node band-hot">
+          <div class="flow-band">HOT</div>
+          <div class="flow-range">80–100</div>
+        </div>
+        <div class="flow-node band-warm">
+          <div class="flow-band">WARM</div>
+          <div class="flow-range">60–79</div>
+        </div>
+        <div class="flow-node band-cold">
+          <div class="flow-band">COLD</div>
+          <div class="flow-range">&lt;60</div>
+        </div>
+      </div>
+      <div class="flow-arrow">↓</div>
+
+      <div class="flow-node output">
+        <div class="flow-label">OUTPUT</div>
+        <div class="flow-title">Monthly AE Assignments</div>
+        <div class="flow-detail">All AEs · 1,000 accounts ranked · with "why now" reasoning</div>
+      </div>
+
+      <div class="flow-observability">
+        <div class="flow-label">OBSERVABILITY · HITL</div>
+        <div class="flow-side-row">
+          <div class="flow-node side">T3 · Snapshots</div>
+          <span class="flow-arrow-h">→</span>
+          <div class="flow-node side">T4 · Signal Diff (true flips only)</div>
+          <span class="flow-arrow-h">→</span>
+          <div class="flow-node side">SFDC writeback</div>
+        </div>
+        <div class="flow-detail">Catches AI scoring drift. Surfaces only true signal flips — ignores re-confirmation noise.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>What evolved from the proposal:</strong> the deck had Market + Intent as one combined "Table 2." In the build, I split them into 2A and 2B — separate tables — so each Claygent has its own clean schema and RevOps can tune the layers independently.
+    </div>
+
+    <h4 class="sub-label">The roadblock — AI scoring drift</h4>
+    <p>Same account, different runs, drifting Claygent scores. If RevOps couldn't trust the score, the system would die.</p>
+
+    <div class="callout">
+      <strong>The fix is in the architecture:</strong> Table 3 snapshots + Table 4 true-flips-only + ongoing HITL spot-checks. <em>Design for drift detection from day one — not after the system loses trust.</em>
+    </div>
+  </div>
+
+  <!-- Stage 4 -->
+  <div class="stage">
+    <div class="stage-num">STAGE_04 / OUTCOME &amp; WHAT'S NEXT</div>
+    <h3>Core to Squint's Q2 sales motion.</h3>
+
+    <p>Powers Squint's <strong>Dynamic Territory Motion</strong> — every AE gets monthly assignments of high-intent accounts with scoring + "why now" reasoning per account.</p>
+
+    <div class="metrics">
+      <div class="metric"><div class="num">1,000</div><div class="label">Accounts ranked</div></div>
+      <div class="metric"><div class="num">monthly</div><div class="label">Cadence</div></div>
+      <div class="metric"><div class="num">All AEs</div><div class="label">On the motion</div></div>
+    </div>
+
+    <div class="callout">
+      <strong>Before:</strong> hundreds of accounts assigned, randomly picked. Hot accounts sat untouched.<br>
+      <strong>After:</strong> monthly Hot band, worked the same month it's flagged.
+    </div>
+
+    <p style="color: var(--text-dim-2); font-size: 13px; font-style: italic;">[Specific deals + ARR shared verbally in the interview — not on the public page.]</p>
+
+    <h4 class="sub-label">What I'd do differently</h4>
+    <p>Clay was right for the first build — fast to ship, RevOps-tunable. A future rebuild I'd do as a <strong>modular Python + Claude system</strong>, not locked into Clay. Lets me compose AI agents across arbitrary inputs and layer in signals from my other systems (Competitor Engagement, Comp Market Map).</p>
+
+    <h4 class="sub-label">What it taught me</h4>
+    <p>GTM systems only get adopted when non-engineers can tune the logic. <strong>Build for the operator, not for yourself.</strong></p>
+  </div>
+</section>
+
+<!-- PROJECT 2 -->
+<section id="project-2" class="project-section">
+  <div class="project-header">
+    <div class="num-tag">PROJECT_02</div>
+    <h2>Intent Signal Surfacing Layer</h2>
+    <p class="lede">Three independent building blocks — company followers, competitor engagement, CEO post engagement. Each surfaces a different LinkedIn intent signal. They run in parallel.</p>
+  </div>
+
+  <!-- Stage 1 -->
+  <div class="stage">
+    <div class="stage-num">STAGE_01 / IDENTIFYING THE PROBLEM</div>
+    <h3>Warm intent was leaking past us.</h3>
+    <p>From early on, Squint wasn't capturing warm signals. People engaging with Squint's company page and the CEO's LinkedIn posts — likes, follows, comments — <strong>never made it into our prospect list</strong>.</p>
+
+    <div class="callout">
+      Between the company page and CEO posts, Squint was generating <strong>thousands of engagement signals</strong> from manufacturing leaders. Almost none were being prospected. <em>Warm leads sitting in plain sight.</em>
+    </div>
+
+    <p><strong>Hypothesis:</strong> content engagement = warm intent orders of magnitude beyond cold leads.</p>
+  </div>
+
+  <!-- Stage 2 -->
+  <div class="stage">
+    <div class="stage-num">STAGE_02 / EXPLORING SOLUTIONS</div>
+    <h3>"OpenClaw can't scrape LinkedIn."</h3>
+    <p>Three options: buy Common Room/Apollo (generic, expensive), deploy OpenClaw (LinkedIn blocks autonomous agents), or build purpose-built scrapers.</p>
+
+    <div class="callout">
+      <strong>The OpenClaw pitch to leadership:</strong> not "build vs. buy" — <em>"OpenClaw wasn't built for LinkedIn."</em> Cloudflare, behavioral detection, IP fingerprinting. Argued for purpose-built — BrightData proxies + Phantom anti-detection. The right tool for a specific surface.
+    </div>
+
+    <p><strong>Three building blocks, not one big build:</strong> built sequentially as I validated each pattern — Followers first (small + fast, booked meetings), then Competitor Engagement (deeper engineering once the pattern was proven), then CEO Post Engagement (closes the routing loop). They run as three independent pipelines.</p>
+  </div>
+
+  <!-- Stage 3 -->
+  <div class="stage">
+    <div class="stage-num">STAGE_03 / IMPLEMENTATION</div>
+    <h3>Three building blocks.</h3>
+    <p>Three independent signal pipelines — each surfacing a different LinkedIn intent source. They run in parallel, not in sequence.</p>
+
+    <div class="iterations">
+      <div class="iter">
+        <div class="version">BLOCK_A</div>
+        <h4>Company Followers</h4>
+        <p>Phantom scrapes <strong>new followers</strong> of Squint's LinkedIn company page. Clay's Easy Person Enrichment adds title, company, and LinkedIn URL. Posts to a dedicated Slack channel <strong>twice a week</strong>. <strong>SDR on-call</strong> works the list.</p>
+        <div class="stack">
+          <span class="stack-chip">Phantom</span>
+          <span class="stack-chip">Clay enrich</span>
+          <span class="stack-chip">Slack</span>
+        </div>
+        <div class="status shipped">SHIPPED · BOOKS MEETINGS</div>
+      </div>
+
+      <div class="iter">
+        <div class="version">BLOCK_B</div>
+        <h4>Competitor Engagement</h4>
+        <p>BrightData scrapes posts from competitor LinkedIn company pages. Auto-flags top posts gaining engagement. Phantom pulls likers. Clay enriches profiles. Flask dashboard for review + ad-hoc URL drop. Pull model — surfaced via dashboard, not Slack.</p>
+        <div class="stack">
+          <span class="stack-chip">BrightData</span>
+          <span class="stack-chip">Supabase</span>
+          <span class="stack-chip">Flask</span>
+          <span class="stack-chip">Railway</span>
+          <span class="stack-chip">Phantom</span>
+          <span class="stack-chip">Clay</span>
+        </div>
+        <div class="status shipped">DEPLOYED · DASHBOARD-PULL</div>
+      </div>
+
+      <div class="iter">
+        <div class="version">BLOCK_C</div>
+        <h4>CEO Post Engagement</h4>
+        <p>Scrapes engagers of Squint's CEO LinkedIn posts. HubSpot lookup on name match. ICP-fit classification routes effort — SDR for high-fit, marketing for nurture. Writeback to HubSpot with "first seen source" + Slack push for SDR outreach. <strong>Current project.</strong></p>
+        <div class="stack">
+          <span class="stack-chip">Phantom</span>
+          <span class="stack-chip">Clay</span>
+          <span class="stack-chip">HubSpot</span>
+          <span class="stack-chip">ICP filter</span>
+          <span class="stack-chip">Slack</span>
+        </div>
+        <div class="status wip">IN FLIGHT</div>
+      </div>
+    </div>
+
+    <h4 class="sub-label">Block B deep dive — Competitor Engagement</h4>
+    <p>The meatiest of the three. Deployed on Railway as <strong>two services</strong>: a Flask web app (the dashboard) and a pipeline cron service (Mondays 9am UTC). Code repo: <code class="inline-code">jessalynsimonparker/competitor-tracker</code>.</p>
+
+    <table>
+      <thead><tr><th>Step</th><th>What happens</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1. Scrape</strong></td><td>BrightData hits competitor LinkedIn company pages, captures post_url, text, date, likes, comments. Trims to rolling 30-day window. Caps at 5 posts/company/run.</td></tr>
+        <tr><td><strong>2. Auto-flag</strong></td><td>Compares this run's likes vs. last snapshot. Queues <strong>top 2 net-new gainers per company</strong> for Phantom. Re-queues posts that keep gaining.</td></tr>
+        <tr><td><strong>3. Manual-flag</strong></td><td>Dashboard route <code class="inline-code">POST /api/flag/&lt;id&gt;</code> flags any post for engager scraping. <code class="inline-code">POST /api/posts/manual</code> lets me paste any LinkedIn URL + pain point + poster company and queue it for Phantom.</td></tr>
+        <tr><td><strong>4. Phantom worker</strong></td><td>Loops queued posts. Launches PhantomBuster "LinkedIn Post Likers Export" per URL. 3-min sleep between posts to dodge rate limits. Writes likers to Supabase <code class="inline-code">profiles</code> + <code class="inline-code">engagement</code> tables.</td></tr>
+        <tr><td><strong>5. Clay enrich</strong></td><td>Two webhooks. Profile webhook enriches likers with title/company/email/URL. Poster webhook enriches the post author (separate flow).</td></tr>
+        <tr><td><strong>6. Surface</strong></td><td>Dashboard reads from <code class="inline-code">/api/posts</code>, <code class="inline-code">/api/profiles</code>, <code class="inline-code">/api/posts/&lt;id&gt;/likers</code>. Pull model — no Slack notification (yet).</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>The honest limitation:</strong> Competitor Engagement surfaces signals via dashboard only. If a rep doesn't open it, they don't see them. That's the gap Block C closes — writeback to HubSpot/SFDC so signals reach reps where they already work.
+    </div>
+
+    <h4 class="sub-label">Block C — CEO Post Engagement (current project)</h4>
+    <p><strong>Why CEO posts specifically:</strong> highest signal-to-noise (manufacturing leaders engage with vision-level content), funnel acceleration signal for existing opps, and quantifies content investment ROI. Lives in Clay today — <strong>819 engagement records</strong> processed through HubSpot lookup + ICP-fit classification. Step 4 (HubSpot writeback + Slack push) is in flight.</p>
+
+    <a href="https://jessalynsimonparker.github.io/devin-post-engagement-flowchart/devin_flowchart.html" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; margin: 16px 0 32px; padding: 16px 24px; background: var(--surface); border: 1px solid var(--accent); border-radius: 8px; color: var(--accent); text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.05em; transition: background 0.2s;">
+      <span style="font-size: 18px;">→</span>
+      <span>VIEW INTERACTIVE BLOCK_C FLOW</span>
+      <span style="color: var(--text-dim); font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: normal;">click a sample lead to watch it travel the path</span>
+    </a>
+
+    <h4 class="sub-label">A taste of the Block B auto-flag logic</h4>
+    <pre><span class="com"># Block B — flag posts gaining engagement since last snapshot</span>
+<span class="kw">def</span> <span class="fn">auto_flag_top_posts</span>():
+    <span class="kw">for</span> company <span class="kw">in</span> tracked_companies:        <span class="com"># competitor handles</span>
+        posts = <span class="fn">get_recent_posts</span>(company, days=<span class="str">30</span>)
+        <span class="kw">for</span> post <span class="kw">in</span> posts:
+            post.delta = post.likes - post.prev_likes
+
+        <span class="com"># top 2 net-new gainers per company</span>
+        top = <span class="fn">sorted</span>(posts, key=<span class="kw">lambda</span> p: p.delta, reverse=<span class="kw">True</span>)[:<span class="str">2</span>]
+        <span class="kw">for</span> post <span class="kw">in</span> top:
+            <span class="kw">if</span> post.phantom_status != <span class="str">"done"</span> <span class="kw">or</span> post.delta &gt; <span class="str">0</span>:
+                <span class="fn">queue_for_phantom</span>(post)         <span class="com"># → triggers liker scrape</span></pre>
+  </div>
+
+  <!-- Stage 4 -->
+  <div class="stage">
+    <div class="stage-num">STAGE_04 / OUTCOME &amp; WHAT'S NEXT</div>
+    <h3>Followers source meetings. Competitor Engagement surfaced the workflow gap. CEO Engagement closes it.</h3>
+
+    <div class="metrics">
+      <div class="metric">
+        <div class="num">10+</div>
+        <div class="label">Meetings from Followers (3mo)</div>
+      </div>
+      <div class="metric">
+        <div class="num">819</div>
+        <div class="label">CEO engagers processed</div>
+      </div>
+      <div class="metric">
+        <div class="num">2</div>
+        <div class="label">Competitors tracked</div>
+      </div>
+    </div>
+
+    <h4 class="sub-label">The honest Competitor Engagement lesson</h4>
+    <p>Competitor Engagement is the most technically sophisticated of the three — and it works. Sourced warm leads when running. But it was an evenings-and-weekends experiment, not yet organizationally absorbed at scale.</p>
+
+    <div class="callout">
+      <strong>The lesson:</strong> GTM Engineering ships <em>twice</em> — once technically, once organizationally. Until a system is funded and owned by the company, it's still a personal experiment. <em>That's the gap a GTM Engineer hire fills.</em>
+    </div>
+
+    <p>CEO Engagement is designed to be absorbable from day one — lives inside Clay + HubSpot (tools Squint already pays for). <strong>Ships by end of this week.</strong></p>
+
+    <h4 class="sub-label">What it taught me</h4>
+    <p><strong>Earn the right to deeper engineering</strong> (ship lightweight to validate). <strong>Engineering shipped ≠ organizationally absorbed.</strong> <strong>Design for the budget the company already has.</strong></p>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section id="close" class="closing">
+  <div class="section-label">CLOSING</div>
+  <h2>Fit + Intent<span class="accent">.</span></h2>
+  <p class="lede" style="margin: 0 auto;">Territory Model decides <em>who</em>. Intent Surfacing Layer decides <em>when</em>. I'd take this same pattern to a deeper technical product and build the GTM systems that match the engineering caliber of what you're shipping.</p>
+  <div class="links">
+    <a href="https://linkedin.com/in/jessalyn-simon-parker" target="_blank">LinkedIn</a>
+    <a href="mailto:jessalynsimonparker@gmail.com">Email</a>
+    <a href="#">GitHub</a>
+  </div>
+</section>
+
+<footer>
+  built with html, css, no frameworks · deployed to github pages · jessalynsimonparker.github.io
+</footer>
+
+</body>
+</html>
